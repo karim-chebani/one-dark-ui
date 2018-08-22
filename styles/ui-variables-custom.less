@@ -24,19 +24,23 @@
 .ui-saturation();
 
 .ui-lightness() when (@ui-s-l <  @ui-inv) {
-  @ui-lightness: @ui-s-l + 8%; // increase lightness when too dark
+  @ui-lightness: @ui-s-l + 2%; // increase lightness when too dark (8)
   @ui-lightness-border: @ui-lightness*.3;
 }
 .ui-lightness() when (@ui-s-l >= @ui-inv) {
-  @ui-lightness: min(@ui-s-l, 20%); // limit max lightness (for light syntax themes)
+  @ui-lightness: min(@ui-s-l, 10%); // limit max lightness (for light syntax themes) (20)
   @ui-lightness-border: @ui-lightness*.6;
 }
 .ui-lightness();
 
 // Main colors -----------------
-@ui-fg:     hsl(@ui-hue, min(@ui-saturation, 18%), max(@ui-lightness*3, 66%) );
-@ui-bg:     hsl(@ui-hue, @ui-saturation, @ui-lightness); // normalized @syntax-background-color
-@ui-border: hsl(@ui-hue, @ui-saturation, @ui-lightness-border);
+// @ui-fg:     hsl(@ui-hue, min(@ui-saturation, 37%), max(@ui-lightness*3, 77%) );
+@ui-fg:     hsl(@ui-hue, min(@ui-saturation, 37%), max(@ui-lightness*3, 77%) );
+// @ui-bg:     hsl(@ui-hue, @ui-saturation, @ui-lightness); // normalized @syntax-background-color
+// @ui-bg:     @syntax-background-color; // normalized
+@ui-bg:     #171c1f; // normalized (#191e21)
+// @ui-border: hsl(@ui-hue, @ui-saturation, @ui-lightness-border);
+@ui-border: #000000;
 
 
 
@@ -45,11 +49,16 @@
 // These variables are only used in this theme
 // ----------------------------------------------
 
-@ui-theme-name: one-dark-ui;
+@ui-theme-name: pirate-monokai-ui;
 
 // Text (Custom) -----------------
 @text-color-faded: fade(@text-color, 20%);
 
+// @text-color-added:    @text-color-success;  // green
+// @text-color-ignored:  @text-color-subtle;   // faded
+// @text-color-modified: @text-color-warning;  // orange
+// @text-color-removed:  @text-color-error;    // red
+// @text-color-renamed:  @text-color-info;     // blue
 @text-color-added:    @text-color-success;  // green
 @text-color-ignored:  @text-color-subtle;   // faded
 @text-color-modified: @text-color-warning;  // orange
@@ -58,7 +67,7 @@
 
 
 // Background (Custom) -----------------
-@level-1-color: lighten(@base-background-color, 6%);
+@level-1-color: lighten(@base-background-color, 7%);
 @level-2-color: @base-background-color;
 @level-3-color: darken(@base-background-color, 3%);
 
@@ -74,7 +83,7 @@
 @accent-text-color:       contrast(@accent-color, hsl(@ui-hue,100%,10%), #fff, 25% );
 
 // used for button, tooltip (larger things)
-@accent-bg-color:         mix( hsv( @ui-hue, 66%, 66%), hsl( @ui-hue, 66%, 60%), @accent-luma * 2 ); // mix hsv + hsl (favor hsl for dark, hsv for light colors)
+@accent-bg-color:         mix( hsv( @ui-hue, 47%, 47%), hsl( @ui-hue, 47%, 47%), @accent-luma * 1 ); // mix hsv + hsl (favor hsl for dark, hsv for light colors)
 @accent-bg-text-color:    contrast(@accent-bg-color, hsl(@ui-hue,100%,10%), #fff, 30% );
 
 // used for text only
@@ -134,6 +143,7 @@
 // These variables are used to override packages
 // ----------------------------------------------
 
+// @settings-list-background-color: darken(@level-2-color, 1.5%);
 @settings-list-background-color: darken(@level-2-color, 1.5%);
 @theme-config-box-shadow: inset 0 0 3px hsla(0, 0%, 100%, .4), 0 1px 3px hsla(0, 0%, 0%, .2);
 @theme-config-box-shadow-selected: inset 0 1px 3px hsla(0, 0%, 0%, .1);
